@@ -9,3 +9,10 @@ const std::string& Weapon::getType(void)
 {
     return(this->type);
 }
+
+Weapon::Weapon(std::string name) //cons
+{
+    this->type=name;
+}
+
+Weapon::~Weapon(){}
