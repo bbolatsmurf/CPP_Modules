@@ -1,20 +1,29 @@
 #include "Harl.hpp"
 
-void	Harl::debug(void)
+void Harl::debug()
 {
-    std::cout << "[ DEBUG ]\n" << "7XL-çift peynirli-üçlü turşu-özel-ketçaplı burgerime fazladan domuz pastır- ması yemeyi seviyorum. Gerçekten seviyorum!\n\n";
+    std::cout << "\033[1;92m[ DEBUG ]\033[0m" << std::endl;
+    std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-specialketchup burger. I really do!" << std::endl;
 }
-void	Harl::info(void)
+
+void Harl::info()
 {
-    std::cout << "[ INFO ]\n" << "Ekstra domuz pastırması eklemenin daha fazla paraya mal olduğuna inanamıy- orum. Burgerime yeterince pastırma koymadınız! Yapsaydınız, daha fazlasını iste- mezdim!\n\n";
+    std::cout << "\033[1;92m[ INFO ]\033[0m" << std::endl;
+    std::cout << "I cannot believe adding extra bacon costs more money. You didn’t put"
+"enough bacon in my burger! If you did, I wouldn’t be asking for more!" << std::endl;
 }
-void	Harl::warning(void)
+
+void Harl::warning()
 {
-    std::cout << "[ WARNING ]\n" << "Bence bedavaya fazladan pastırma yemeyi hak ediyorum. Ben yıllardır geliyorum, sen geçen aydan beri burada çalışmaya başladın.\n\n";
+    std::cout << "\033[1;92m[ WARNING ]\033[0m" << std::endl;
+    std::cout << "I think I deserve to have some extra bacon for free. I’ve been coming for"
+"years whereas you started working here since last month." << std::endl;
 }
-void	Harl::error(void)
+
+void Harl::error()
 {
-    std::cout << "[ ERROR ]\n" << "Bu kabul edilemez! Şimdi müdürle konuşmak istiyorum.\n\n";
+    std::cout << "\033[1;91m[ ERROR ]\033[0m" << std::endl;
+    std::cout << "This is unacceptable, I want to speak to the manager now." << std::endl;
 }
 
 int index(std::string level)

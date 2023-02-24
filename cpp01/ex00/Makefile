@@ -4,11 +4,11 @@ SRC = *.cpp
 
 all: $(NAME)
 
-$(NAME):
+$(NAME): $(SRC)
 	$(COMPILER) $(SRC) -o $(NAME)
 
 clean:
-	rm -rf zombie
+	rm -rf $(NAME)
 
 re: clean all
 

@@ -4,7 +4,7 @@ SRC = *.cpp
 
 all: $(NAME)
 
-$(NAME):
+$(NAME): $(SRC)
 	$(COMPILER) $(SRC) -o $(NAME)
 
 clean:

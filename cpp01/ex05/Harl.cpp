@@ -13,7 +13,7 @@ void Harl::info()
 	std::cout << "[INFO]" <<std::endl;
 	std::cout << "I cannot believe adding extra bacon";
 	std::cout << "costs more money. You didn’t put enough";
-	std::cout << " bacon in my burger! If you did,";
+	std::cout << " costs more money. If you did,";
 	std::cout << " I wouldn’t be asking for more!" << std::endl;
 }
 

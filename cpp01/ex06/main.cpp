@@ -2,7 +2,9 @@
 
 int main(int ac, char **av)
 {
-    (void)ac;
-    Harl harl;
-    harl.complain(av[1]);
+    if(ac == 2)
+    {
+        Harl harl;
+        harl.complain(av[1]);
+    }
 }
