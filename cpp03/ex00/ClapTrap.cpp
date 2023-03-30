@@ -1,72 +1,130 @@
 #include "ClapTrap.hpp"
 
 //Orthodox canonical form
-ClapTrap::ClapTrap()
+/* ClapTrap::ClapTrap()
 {
     std::cout << "ClapTrap constructor called" << std::endl;
-    this->attackDamage = 10;
-    this->hitPoint = 10;
-    this->attackDamage = 0;
-}
-
-ClapTrap::ClapTrap(std::string Name)
-{
-    std::cout << "Name ClapTrap constructor called" << std::endl;
-    this->Name = name;
     this->hitP = 10;
     this->energyP = 10;
-    this->attackD = 10;
+    this->attackD = 0;
+} */
+
+ClapTrap::ClapTrap(std::string name)
+{
+    std::cout << "Claptrap constructor called" << std::endl;
+    this->name = name;
+    this->hitP = 10;
+    this->energyP = 10;
+    this->attackD = 0;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &src)
 {
-    std::cout << "Copy ClapTrap constructor called" << std::endl;
-    *this = src; //this = &src
+    std::cout << "ClapTrap copy constructor called" << std::endl;
+    *this = src;
 }
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "Destructor called" << std::endl;
+    std::cout << "Claptrap Destructor called" << std::endl;
 }
 
 //getter and setter
-std::string getName()
+std::string ClapTrap::getName()
 {
-    return(this->Name);
+    return(this->name);
 }
 
-void setName(std::string &Name)
+void  ClapTrap::setName(std::string &Name)
 {
     this->name = Name;
 }
 
-unsigned int getAttackDamage()
+unsigned int  ClapTrap::getAttackDamage()
 {
     return(this->attackD);
 }
 
-void setAttackDamage(unsigned int attackDamage);
+void  ClapTrap::setAttackDamage(unsigned int attackDamage)
 {
     this->attackD = attackDamage;
 }
 
-unsigned int getHitPoint()
+unsigned int  ClapTrap::getHitPoint()
 {
     return(this->hitP);
 }
 
-void setHitPoint(unsigned int hitPoint)
+void  ClapTrap::setHitPoint(unsigned int hitPoint)
 {
-    this->hitP = hitPoint
+    this->hitP = hitPoint;
 }
 
-unsigned int getEnergyPoint()
+unsigned int  ClapTrap::getEnergyPoint()
 {
     return(this->energyP);
 }
 
-void setEnergyPoint(unsigned int energyPoint)
+void  ClapTrap::setEnergyPoint(unsigned int energyPoint)
 {
     this->energyP = energyPoint;
 }
 
+//functions
+void ClapTrap::attack(const std::string& target)
+{
+	if(this->hitP <=0 || this->energyP <=0)
+		std::cout << "ClapTrap " << this->name << ", you already dead" << std::endl;
+	else
+	{
+		std::cout << "ClapTrap " << this->name << " attacks " << target << ", causing " << this->attackD << " points of damage!" << std::endl;
+		this->energyP--;
+	}
+}
+
+void ClapTrap::takeDamage(int amount)
+{
+	if(this->hitP <=0 || this->energyP <=0)
+		std::cout << "ClapTrap " << this->name << ", you already dead" << std::endl;
+	else
+	{
+		std::cout << "ClapTrap " << this->name << " took " << amount << " points of damage" << std::endl;
+		this->hitP -= amount;	
+		if (this->hitP <= 0)
+			std::cout << "ClapTrap " << "OH NO!! " << this->name << ", you died..." << std::endl;
+	}
+}
+
+void ClapTrap::beRepaired(int amount)
+{
+	if (this->hitP <= 0 || this->energyP <= 0)
+		std::cout << "ClapTrap " << this->name << ", you already dead" << std::endl;
+	else
+	{
+		std::cout << "ClapTrap " << this->name << " got " << amount << " of hit points" << std::endl;
+		this->energyP--;
+		this->hitP += amount;
+	}
+}
+
+//operator
+
+ClapTrap &ClapTrap::operator=(ClapTrap const &temp)
+{
+    std::cout << "ClapTrap Copy assignment operator called" << std::endl;
+	if (this != &temp)
+	{
+        this->name = temp.name;
+        this->hitP = temp.hitP;
+        this->energyP = temp.energyP;
+        this->attackD = temp.attackD;
+    }
+	return (*this);
+}
+
+std::ostream	&operator<<(std::ostream &stream, ClapTrap &clapTrap)
+{
+	stream << " Name: " << clapTrap.getName() << std::endl << " Hitpoints: " << clapTrap.getHitPoint() << std::endl << \
+	" Energy Points: " << clapTrap.getEnergyPoint() << std::endl << " Attack Damage: " << clapTrap.getAttackDamage() << std::endl;
+	return (stream);
+}
