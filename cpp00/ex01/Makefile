@@ -1,6 +1,6 @@
 NAME = phonebook
 SRCS = $(wildcard *.cpp)
-COMPILER = c++ -Wall -Wextra -Werror -std=c++98
+COMPILER = c++ -g -Wall -Wextra -Werror -std=c++98
 
 all:
 	$(COMPILER) $(SRCS) -o $(NAME)

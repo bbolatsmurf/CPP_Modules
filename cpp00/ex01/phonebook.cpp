@@ -1,24 +1,8 @@
+#include "phonebook.hpp"
 #include <iostream>
 #include <string>
 #include <iomanip>
 #include <fstream>
-
-class Contact
-{
-    public:
-        std::string Name;
-        std::string Surname;
-        std::string Nickname;
-        std::string PhoneNumber;
-        std::string DarkestSecret;
-        bool flag;
-};
-
-class PhoneBook:Contact
-{
-    public:
-        Contact book[8];
-};
 
 int is_all_numeric(std::string number)
 {
@@ -49,20 +33,19 @@ int main()
             std::string surname;
             std::string nickname;
             std::string phonenumber;
-            std::string darkestsecert;
+            std::string darkestsecret;
             std::cout << "please enter your name           👤: "; std::getline(std::cin, name);
             std::cout << "please enter your surname        👥: "; std::getline(std::cin, surname);
             std::cout << "please enter your nickname       👀: "; std::getline(std::cin, nickname);
             std::cout << "please enter your phone number   📞: "; std::getline(std::cin, phonenumber);
-            std::cout << "please enter your darkest secret 😈: "; std::getline(std::cin, darkestsecert);
-            if(!name.empty() && !surname.empty() && !nickname.empty() && !phonenumber.empty() && !darkestsecert.empty())
+            std::cout << "please enter your darkest secret 😈: "; std::getline(std::cin, darkestsecret);
+            if(!name.empty() && !surname.empty() && !nickname.empty() && !phonenumber.empty() && !darkestsecret.empty())
             {
-                phonebook.book[i % 8].Name = name;
-                phonebook.book[i % 8].Surname = surname;
-                phonebook.book[i % 8].Nickname = nickname;
-                phonebook.book[i % 8].PhoneNumber = phonenumber;
-                phonebook.book[i % 8].DarkestSecret = darkestsecert;
-                phonebook.book[i % 8].flag = 1;
+                phonebook.book[i % 8].setName(name);
+                phonebook.book[i % 8].setLastname(surname);
+                phonebook.book[i % 8].setNickname(nickname);
+                phonebook.book[i % 8].setNumber(phonenumber);
+                phonebook.book[i % 8].setSecret(darkestsecret);
                 i++;
                 c++;
             }
@@ -72,32 +55,32 @@ int main()
         else if(!array.compare("SEARCH") && c && !array.empty())
         {
             std::cout << std::endl;
-            for(int lim = 0; lim < 8 && !phonebook.book[lim].Name.empty();lim++){
-                if(phonebook.book[lim].Name.length() > 10)
-                    std::cout << lim << " " << std::right <<std::setw(9)<< phonebook.book[lim].Name.substr(0,9) << ".|";
+            for(int lim = 0; lim < 8 && !phonebook.book[lim].getName().empty();lim++){
+                if(phonebook.book[lim].getName().length() > 10)
+                    std::cout << lim << " " << std::right <<std::setw(9)<< phonebook.book[lim].getName().substr(0,9) << ".|";
                 else
-                    std::cout << lim <<  " " << std::right <<std::setw(10)<< phonebook.book[lim].Name << "|";
-                if(phonebook.book[lim].Surname.length() > 10)
-                    std::cout << std::right <<std::setw(9)<< phonebook.book[lim].Surname.substr(0,9) << ".|";
+                    std::cout << lim <<  " " << std::right <<std::setw(10)<< phonebook.book[lim].getName() << "|";
+                if(phonebook.book[lim].getLastname().length() > 10)
+                    std::cout << std::right <<std::setw(9)<< phonebook.book[lim].getLastname().substr(0,9) << ".|";
                 else
-                    std::cout << std::right <<std::setw(10)<< phonebook.book[lim].Surname << "|";
-                if(phonebook.book[lim].Nickname.length() > 10)
-                    std::cout << std::right <<std::setw(9)<< phonebook.book[lim].Nickname.substr(0,9) << ".|" << std::endl;
+                    std::cout << std::right <<std::setw(10)<< phonebook.book[lim].getLastname() << "|";
+                if(phonebook.book[lim].getNickname().length() > 10)
+                    std::cout << std::right <<std::setw(9)<< phonebook.book[lim].getNickname().substr(0,9) << ".|" << std::endl;
                 else
-                    std::cout << std::right <<std::setw(10)<< phonebook.book[lim].Nickname << "|" << std::endl;
+                    std::cout << std::right <<std::setw(10)<< phonebook.book[lim].getNickname() << "|" << std::endl;
             }std::cout << std::endl;
             control:
             std::cout << "please choose what you want to know 🔎"; std::getline(std::cin, array);
             if(is_all_numeric(array) && !array.empty())
             {
-                tmp = std::stoi(array);
+                tmp = atoi(array.c_str()); // return const char * 
                 if((tmp >= 0 && tmp < c) && !array.empty())
                 {
-                    std::cout << std::endl << "name           ➡️ " << phonebook.book[tmp].Name << std::endl;
-                    std::cout << "surname        ➡️ " << phonebook.book[tmp].Surname << std::endl;
-                    std::cout << "nickname       ➡️ " << phonebook.book[tmp].Nickname << std::endl;
-                    std::cout << "phone number   ➡️  " << phonebook.book[tmp].PhoneNumber << std::endl;
-                    std::cout << "darkest secret ➡️ " << phonebook.book[tmp].DarkestSecret << std::endl;
+                    std::cout << std::endl << "name           ➡️ " << phonebook.book[tmp].getName() << std::endl;
+                    std::cout << "surname        ➡️ " << phonebook.book[tmp].getLastname() << std::endl;
+                    std::cout << "nickname       ➡️ " << phonebook.book[tmp].getNickname() << std::endl;
+                    std::cout << "phone number   ➡️ " << phonebook.book[tmp].getNumber() << std::endl;
+                    std::cout << "darkest secret ➡️ " << phonebook.book[tmp].getSecret() << std::endl;
                 }
                 else
                 {
