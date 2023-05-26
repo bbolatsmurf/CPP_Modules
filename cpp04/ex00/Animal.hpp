@@ -2,6 +2,8 @@
 #define POLYMORPHISM_HPP
 
 #include "iostream"
+#include "Cat.hpp"
+#include "Dog.hpp"
 
 class Animal
 {
