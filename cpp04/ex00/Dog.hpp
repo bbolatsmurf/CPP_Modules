@@ -1,12 +1,7 @@
-#ifndef CAT_HPP
-#define CAT_HPP
 #include "Animal.hpp"
 
-class Dog : private Animal //burası private mi olmalı?
+class Dog : public Animal //burası public mi olmalı? yok
 {
-    private:
-        std::string type;
     public:
         void makeSound();
 };
-#endif
