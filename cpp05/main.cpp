@@ -2,22 +2,15 @@
 
 int main()
 {
-    int t;
-    std::string temp;
-    Bureaucrat emres;
-    while(1){
-        std::cin >> temp;
-        if(!temp.compare("exit"))
-            break;
-        else if(!temp.compare("+"))
-        {
-            std::cin >> t;
-            emres.incrementGrade(t);
-        }
-        else if(!temp.compare("-"))
-        {
-            std::cin >> t;
-            emres.decrementGrade(t);
-        }
+    try
+    {
+        Bureaucrat buro;
+        buro.incrementGrade(20);
+        buro.incrementGrade(30);
     }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    return 0;
 }

@@ -3,7 +3,7 @@
 Bureaucrat::Bureaucrat()
 {
     std::cout << "Bureaucrat constructor called" << std::endl;
-    this->_name = "Bureaucrat";
+    this->_name = "Barackaucrat";
     this->_grade = 50;
 }
 
@@ -27,14 +27,20 @@ Bureaucrat::~Bureaucrat()
     std::cout << "Bureaucrat destructor called" << std::endl;
 }
 
-std::string Bureaucrat::getName(void)
+std::string Bureaucrat::getName(void) const
 {
     return(this->_name);
 }
 
-int Bureaucrat::getGrade(void)
+int Bureaucrat::getGrade(void) const
 {
     return(this->_grade);
+}
+
+std::ostream& operator<<(std::ostream &o, const Bureaucrat &obj)
+{
+	o << obj.getName() << ", bureaucrat grade	" << obj.getGrade();
+    return(o);
 }
 
 Bureaucrat::GradeTooHighException::GradeTooHighException()
@@ -59,30 +65,14 @@ Bureaucrat::GradeTooLowException::~GradeTooLowException()
 
 void Bureaucrat::incrementGrade(int value)
 {
-    try
-    {
-        if((_grade -= value) < 1)
-        {
-            throw GradeTooHighException();
-        }
-    }
-    catch(const Bureaucrat::GradeTooHighException& ex)
-    {
-        std::cerr << "yavas la gac tane arttiriyon" << '\n';
-    }
+    if((_grade - value) < 1)
+        throw Bureaucrat::GradeTooHighException();
+    _grade -= value;
 }
 
 void Bureaucrat::decrementGrade(int value)
 {
-    try
-    {
-        if((_grade += value) > 150)
-        {
-            throw GradeTooLowException();
-        }
-    }
-    catch(const Bureaucrat::GradeTooLowException& ex)
-    {
-        std::cerr << "oha olm tasti" << '\n';
-    }
+    if((_grade + value) > 150)
+        throw GradeTooLowException();
+    _grade += value;
 }

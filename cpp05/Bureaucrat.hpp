@@ -14,12 +14,10 @@ class Bureaucrat
         Bureaucrat& operator=(const Bureaucrat& tmp);
         ~Bureaucrat();
 
-        std::string getName(void);
-        int getGrade(void);
-        //void GradetooHighException(std::string grade); böyle de olabilir!!!
-        //void GradeTooLowException();
-        void incrementGrade(int value); // try-catch burada!
-        void decrementGrade(int value); // try-catch burada!
+        std::string getName(void) const;
+        int getGrade(void) const;
+        void incrementGrade(int value);
+        void decrementGrade(int value);
         class GradeTooHighException
         {
             public:
@@ -33,5 +31,6 @@ class Bureaucrat
                 ~GradeTooLowException();
         };
 };
+std::ostream &operator<<(std::ostream &o, const Bureaucrat &obj);
 
 #endif
