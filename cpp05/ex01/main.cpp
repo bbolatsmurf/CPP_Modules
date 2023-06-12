@@ -5,9 +5,9 @@ int main()
 {
     try
     {
-        Bureaucrat bure("sikko", 31);
+        Bureaucrat bure("Baho", 31);
         Form forma;
-        bure.incrementGrade(10);
+        bure.incrementGrade(30);
         forma.beSigned(bure);
         bure.signForm(forma);
     }

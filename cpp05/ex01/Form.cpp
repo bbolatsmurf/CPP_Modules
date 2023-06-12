@@ -67,6 +67,7 @@ Form::GradeTooLowException::GradeTooLowException()
     std::cout << "!!!!!!!<<<<<<< Bureaucrat's grade is not enough >>>>>>>>!!!!!!!!" << std::endl;
 }
 
-Form::GradeTooHighException::GradeTooHighException(){
+Form::GradeTooHighException::GradeTooHighException()
+{
     std::cout << "!!!!!!!<<<<<<< Bureaucrat's grade is so high babyyy>>>>>>>>!!!!!!!!" << std::endl;
 }
