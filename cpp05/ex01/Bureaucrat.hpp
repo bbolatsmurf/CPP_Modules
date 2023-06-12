@@ -2,8 +2,9 @@
 # define BUREAUCRAT_HPP
 
 #include <iostream>
-#include "Form.hpp"
+#include <exception>
 
+class Form;
 class Bureaucrat
 {
     private:

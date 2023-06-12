@@ -1,12 +1,12 @@
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
-Form::Form() : name("Formy"), gradeSign(25), gradeExecute(25), sign(false)
+Form::Form() : name("≠Formy≠"), sign(false), gradeSign(25), gradeExecute(25)
 {
     std::cout << "Form constructor called" << std::endl;
 }
 
-Form::Form(const Form& tmp) : name("Formy"), gradeSign(25), gradeExecute(25)
+Form::Form(const Form& tmp) : name(tmp.getName()), sign(tmp.getSign()), gradeSign(tmp.getGradeSign()), gradeExecute(tmp.getGradeExecute())
 {
     std::cout << "Form copy constructor called" << std::endl;
 }
@@ -51,12 +51,22 @@ std::ostream& operator<<(std::ostream &o, const Form &obj)
     o << "Sign: " << obj.getSign() << std::endl;
     o << "Grade Sign: " << obj.getGradeSign() << std::endl;
     o << "Grade Execute: " << obj.getGradeExecute() << std::endl;
+    return(o);
 }
 
-std::string Form::beSigned(Bureaucrat &obj)
+void Form::beSigned(Bureaucrat &obj)
 {
     if(obj.getGrade() >= this->gradeSign)
         throw GradeTooLowException();
     else
         this->sign = true;
+}
+
+Form::GradeTooLowException::GradeTooLowException()
+{
+    std::cout << "!!!!!!!<<<<<<< Bureaucrat's grade is not enough >>>>>>>>!!!!!!!!" << std::endl;
+}
+
+Form::GradeTooHighException::GradeTooHighException(){
+    std::cout << "!!!!!!!<<<<<<< Bureaucrat's grade is so high babyyy>>>>>>>>!!!!!!!!" << std::endl;
 }
