@@ -1,6 +1,6 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat()
+Bureaucrat::Bureaucrat() : _name("Baho"), _grade(1)
 {
     std::cout << "Bureaucrat default constructor called" << std::endl;
 }
@@ -14,9 +14,8 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
     std::cout << "Bureaucrat parameter constructor called" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& tmp)
+Bureaucrat::Bureaucrat(const Bureaucrat& tmp) : _name(tmp._name), _grade(tmp._grade)
 {
-    *this = tmp;
     std::cout << "Bureaucrat copy constructor called" << std::endl;
 }
 
@@ -24,8 +23,10 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& tmp)
 {
     if(this != &tmp)
     {
-        *const_cast<std::string*>(&this->_name) = tmp._name;
+        *const_cast<std::string*>(&this->_name) = tmp._name; //const değişkenin değerini değiştirmeye calıstıgımızdan dolayı const_cast kullanırız.
+        _grade = tmp._grade;
     }
+    std::cout << "Bureaucrat assignment operator called" << std::endl;
     return(*this);
 }
 
@@ -46,30 +47,21 @@ int Bureaucrat::getGrade(void) const
 
 std::ostream& operator<<(std::ostream &o, const Bureaucrat &obj)
 {
-	o << obj.getName() << ", bureaucrat grade " << obj.getGrade();
+	o << obj.getName() << ", bureaucrat grade : " << obj.getGrade();
     return(o);
 }
 
 Bureaucrat::GradeTooHighException::GradeTooHighException()
 {
     std::cout << "GradeTooHighException constructor called" << std::endl;
+    std::cout << "--- Bureaucrat grade cannot be higher than 1! ---" << std::endl; 
 }
 
 Bureaucrat::GradeTooLowException::GradeTooLowException()
 {
     std::cout << "GradeTooLowException constructor called" << std::endl;
+    std::cout << "--- Bureaucrat grade cannot be lower than 150! ---" << std::endl; 
 }
-
-// Exception classes don't have to be a destructor. Because the program will be continued.
-/* Bureaucrat::GradeTooHighException::~GradeTooHighException()
-{
-    std::cout << "GradeTooHighException destructor called" << std::endl;
-}
-
-Bureaucrat::GradeTooLowException::~GradeTooLowException()
-{
-    std::cout << "GradeTooLowException destructor called" << std::endl;
-} */
 
 void Bureaucrat::incrementGrade(int value)
 {
