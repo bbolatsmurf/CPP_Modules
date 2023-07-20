@@ -1,28 +1,28 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-Form::Form() : name("Default"), sign(false), gradeSign(50), gradeExecute(100)
+AForm::AForm() : name("Default"), sign(false), gradeSign(50), gradeExecute(100)
 {
     std::cout << "Form default constructor called" << std::endl;
 }
 
-Form::Form(std::string _name, int _gradeSign, int _gradeExecute) : name(_name), gradeSign(_gradeSign), gradeExecute(_gradeExecute)
+AForm::AForm(std::string _name, int _gradeSign, int _gradeExecute) : name(_name), gradeSign(_gradeSign), gradeExecute(_gradeExecute)
 {
     sign = false;
     if (gradeSign > 150 || gradeExecute > 150)
-        throw Form::GradeTooLowException();
+        throw AForm::GradeTooLowException();
     else if (gradeSign < 1 || gradeExecute < 1)
-        throw Form::GradeTooHighException();
+        throw AForm::GradeTooHighException();
     std::cout << "Form parameter constructor called" << std::endl;
 }
 
-Form::Form(const Form &tmp) : name(tmp.name), sign(tmp.sign), gradeSign(tmp.gradeSign), gradeExecute(tmp.gradeExecute)
+AForm::AForm(const AForm &tmp) : name(tmp.name), sign(tmp.sign), gradeSign(tmp.gradeSign), gradeExecute(tmp.gradeExecute)
 {
     *this = tmp;
     std::cout << "Form copy constructor called" << std::endl;
 }
 
-Form &Form::operator=(const Form &tmp) // !!!!!!!
+AForm &AForm::operator=(const AForm &tmp) // !!!!!!!
 {
     if (this != &tmp)
     {
@@ -35,32 +35,32 @@ Form &Form::operator=(const Form &tmp) // !!!!!!!
     return (*this);
 }
 
-Form::~Form()
+AForm::~AForm()
 {
     std::cout << "Form destructor called" << std::endl;
 }
 
-std::string Form::getName(void) const
+std::string AForm::getName(void) const
 {
     return (this->name);
 }
 
-bool Form::getSign(void) const
+bool AForm::getSign(void) const
 {
     return (this->sign);
 }
 
-int Form::getGradeSign(void) const
+int AForm::getGradeSign(void) const
 {
     return (this->gradeSign);
 }
 
-int Form::getGradeExecute(void) const
+int AForm::getGradeExecute(void) const
 {
     return (this->gradeExecute);
 }
 
-std::ostream &operator<<(std::ostream &o, const Form &obj)
+std::ostream &operator<<(std::ostream &o, const AForm &obj)
 {
     o << "Name: " << obj.getName() << std::endl;
     o << "Grade Sign: " << std::boolalpha << obj.getGradeExecute() << std::endl;
@@ -69,19 +69,39 @@ std::ostream &operator<<(std::ostream &o, const Form &obj)
     return (o);
 }
 
-void Form::beSigned(Bureaucrat &obj)
+void AForm::beSigned(Bureaucrat &obj)
 {
     if (obj.getGrade() >= this->gradeSign)
         throw GradeTooLowException();
     this->sign = true;
 }
 
-Form::GradeTooLowException::GradeTooLowException()
+AForm::GradeTooLowException::GradeTooLowException()
 {
     std::cout << "!!!!!!!<<<<<<< Not authorized! Bureaucrat's grade is not enough >>>>>>>>!!!!!!!!" << std::endl;
 }
 
-Form::GradeTooHighException::GradeTooHighException()
+AForm::GradeTooHighException::GradeTooHighException()
 {
     std::cout << "!!!!!!!<<<<<<< Not authorized! Bureaucrat's grade is so high babyyy>>>>>>>>!!!!!!!!" << std::endl;
+}
+
+AForm::NotEnoughToSign::NotEnoughToSign()
+{
+    std::cout << "Bureaucrat is not authorized to sign the form" << std::endl;
+}
+
+AForm::NotSignedException::NotSignedException()
+{
+    std::cout << "Form is not signed!" << std::endl;
+}
+
+AForm::FileCreationException::FileCreationException()
+{
+    std::cout << "File creation error!" << std::endl;
+}
+
+AForm::NotEnoughToExecute::NotEnoughToExecute()
+{
+    std::cout << "Bureaucrat's grade is not enough to execute this Aform!" << std::endl;
 }
