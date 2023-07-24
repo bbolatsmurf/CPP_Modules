@@ -16,6 +16,7 @@ public:
     ~PresidentialPardonForm();
 
     void execute(const Bureaucrat& executor) const;
+    AForm* clone(std::string target);
 };
 
 #endif

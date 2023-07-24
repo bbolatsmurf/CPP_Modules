@@ -3,7 +3,7 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm()
 {
-    std::cout << "ShrubberyCreationForm default constructor called" << std::endl;
+    // std::cout << "ShrubberyCreationForm default constructor called" << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm(target, 137, 145)
@@ -70,5 +70,10 @@ void ShrubberyCreationForm::execute(Bureaucrat const& execute) const
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm(){
-    std::cout << "ShrubberyCreationForm destructor called" << std::endl;
+    // std::cout << "ShrubberyCreationForm destructor called" << std::endl;
+}
+
+AForm* ShrubberyCreationForm::clone(std::string target)
+{
+	return(new ShrubberyCreationForm(target));
 }

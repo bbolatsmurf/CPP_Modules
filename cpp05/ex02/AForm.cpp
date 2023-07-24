@@ -22,7 +22,7 @@ AForm::AForm(const AForm &tmp) : name(tmp.name), sign(tmp.sign), gradeSign(tmp.g
     std::cout << "Form copy constructor called" << std::endl;
 }
 
-AForm &AForm::operator=(const AForm &tmp) // !!!!!!!
+AForm &AForm::operator=(const AForm &tmp)
 {
     if (this != &tmp)
     {
@@ -76,32 +76,32 @@ void AForm::beSigned(Bureaucrat &obj)
     this->sign = true;
 }
 
-AForm::GradeTooLowException::GradeTooLowException()
+const char* AForm::GradeTooHighException::what() const throw()
 {
-    std::cout << "!!!!!!!<<<<<<< Not authorized! Bureaucrat's grade is not enough >>>>>>>>!!!!!!!!" << std::endl;
+	return ("!!!!!!!<<<<<<< Not authorized! Bureaucrat's grade is not enough >>>>>>>>!!!!!!!!");
 }
 
-AForm::GradeTooHighException::GradeTooHighException()
+const char* AForm::GradeTooLowException::what() const throw()
 {
-    std::cout << "!!!!!!!<<<<<<< Not authorized! Bureaucrat's grade is so high babyyy>>>>>>>>!!!!!!!!" << std::endl;
+	return ("!!!!!!!<<<<<<< Not authorized! Bureaucrat's grade is too high>>>>>>>>!!!!!!!!");
 }
 
-AForm::NotEnoughToSign::NotEnoughToSign()
+const char* AForm::NotEnoughToSign::what() const throw()
 {
-    std::cout << "Bureaucrat is not authorized to sign the form" << std::endl;
+    return("Bureaucrat is not authorized to sign the form");
 }
 
-AForm::NotSignedException::NotSignedException()
+const char* AForm::NotSignedException::what() const throw()
 {
-    std::cout << "Form is not signed!" << std::endl;
+    return("Form is not signed!");
 }
 
-AForm::FileCreationException::FileCreationException()
+const char* AForm::FileCreationException::what() const throw()
 {
-    std::cout << "File creation error!" << std::endl;
+    return("File creation error!");
 }
 
-AForm::NotEnoughToExecute::NotEnoughToExecute()
+const char* AForm::NotEnoughToExecute::what() const throw()
 {
-    std::cout << "Bureaucrat's grade is not enough to execute this Aform!" << std::endl;
+    return("Bureaucrat's grade is not enough to execute this Aform!");
 }

@@ -2,7 +2,7 @@
 #include "AForm.hpp"
 PresidentialPardonForm::PresidentialPardonForm()
 {
-	std::cout << "PresidentialPardonForm Default Constructor Called" << std::endl;
+	// std::cout << "PresidentialPardonForm Default Constructor Called" << std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm(target, 5, 25)
@@ -24,7 +24,7 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
 
 PresidentialPardonForm::~PresidentialPardonForm()
 {
-    std::cout << "PresidentalPardonForm destructor called" << std::endl;   
+    // std::cout << "PresidentalPardonForm destructor called" << std::endl;   
 }
 
 void PresidentialPardonForm::execute(const Bureaucrat& executor) const
@@ -34,4 +34,9 @@ void PresidentialPardonForm::execute(const Bureaucrat& executor) const
 	else if(executor.getGrade() > getGradeExecute())
 		throw AForm::NotEnoughToExecute();
     std::cout << getName() << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+}
+
+AForm* PresidentialPardonForm::clone(std::string target)
+{
+	return(new PresidentialPardonForm(target));
 }

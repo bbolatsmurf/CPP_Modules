@@ -76,12 +76,12 @@ void Form::beSigned(Bureaucrat &obj)
     this->sign = true;
 }
 
-Form::GradeTooLowException::GradeTooLowException()
+const char* Form::GradeTooHighException::what() const throw()
 {
-    std::cout << "!!!!!!!<<<<<<< Not authorized! Bureaucrat's grade is not enough >>>>>>>>!!!!!!!!" << std::endl;
+	return ("!!!!!!!<<<<<<< Not authorized! Bureaucrat's grade is not enough >>>>>>>>!!!!!!!!");
 }
 
-Form::GradeTooHighException::GradeTooHighException()
+const char* Form::GradeTooLowException::what() const throw()
 {
-    std::cout << "!!!!!!!<<<<<<< Not authorized! Bureaucrat's grade is so high babyyy>>>>>>>>!!!!!!!!" << std::endl;
+	return ("!!!!!!!<<<<<<< Not authorized! Bureaucrat's grade is too high>>>>>>>>!!!!!!!!");
 }

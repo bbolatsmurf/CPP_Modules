@@ -24,17 +24,16 @@ public:
     void decrementGrade(int value);
     void signForm(const AForm &form);
     void executeForm(AForm const & form);
+
     class GradeTooHighException : public std::exception
     {
     public:
-        GradeTooHighException();
-        //~GradeTooHighException();
+        const char * what() const throw();
     };
     class GradeTooLowException : public std::exception
     {
     public:
-        GradeTooLowException();
-        //~GradeTooLowException();
+        const char * what() const throw();
     };
 };
 std::ostream &operator<<(std::ostream &o, const Bureaucrat &obj);

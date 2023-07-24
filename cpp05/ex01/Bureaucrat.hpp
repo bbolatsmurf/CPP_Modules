@@ -26,14 +26,12 @@ public:
     class GradeTooHighException : public std::exception
     {
     public:
-        GradeTooHighException();
-        //~GradeTooHighException();
+        const char * what() const throw();
     };
     class GradeTooLowException : public std::exception
     {
     public:
-        GradeTooLowException();
-        //~GradeTooLowException();
+        const char * what() const throw();
     };
 };
 std::ostream &operator<<(std::ostream &o, const Bureaucrat &obj);

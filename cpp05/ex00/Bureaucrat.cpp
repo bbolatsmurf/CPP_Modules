@@ -23,7 +23,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &tmp)
 {
     if (this != &tmp)
     {
-        *const_cast<std::string *>(&this->_name) = tmp._name; // const değişkenin değerini değiştirmeye calıstıgımızdan dolayı const_cast kullanırız.
+        *const_cast<std::string *>(&this->_name) = tmp._name; // using for change value to const variable.
         _grade = tmp._grade;
     }
     std::cout << "Bureaucrat assignment operator called" << std::endl;
@@ -51,16 +51,14 @@ std::ostream &operator<<(std::ostream &o, const Bureaucrat &obj)
     return (o);
 }
 
-Bureaucrat::GradeTooHighException::GradeTooHighException()
+const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-    std::cout << "GradeTooHighException constructor called" << std::endl;
-    std::cout << "--- Bureaucrat grade cannot be higher than 1! ---" << std::endl;
+	return ("--- Bureaucrat grade cannot be higher than 1! ---");
 }
 
-Bureaucrat::GradeTooLowException::GradeTooLowException()
+const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-    std::cout << "GradeTooLowException constructor called" << std::endl;
-    std::cout << "--- Bureaucrat grade cannot be lower than 150! ---" << std::endl;
+	return ("--- Bureaucrat grade cannot be lower than 150! ---");
 }
 
 void Bureaucrat::incrementGrade(int value)

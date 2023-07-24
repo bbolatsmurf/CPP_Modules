@@ -2,7 +2,7 @@
 #include "Bureaucrat.hpp"
 
 RobotomyRequestForm::RobotomyRequestForm(){
-    std::cout << "RobotomyRequest default constructor called" << std::endl;
+    // std::cout << "RobotomyRequest default constructor called" << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(std:: string target) : AForm(target, 72, 45)
@@ -24,7 +24,7 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& r
 }
 
 RobotomyRequestForm::~RobotomyRequestForm(){
-    std::cout << "RobotomyRequest destructor called" << std::endl;
+    // std::cout << "RobotomyRequest destructor called" << std::endl;
 }
 
 void RobotomyRequestForm::execute(Bureaucrat const &executor) const
@@ -39,4 +39,9 @@ void RobotomyRequestForm::execute(Bureaucrat const &executor) const
         std::cout << getName() << " has been robotomized successfully 50% of the time : " << random_number << std::endl;
     else if(random_number > 50)
         std::cout << getName() << " robotomization process has been failed! : " << random_number << std::endl;
+}
+
+AForm* RobotomyRequestForm::clone(std::string target)
+{
+	return(new RobotomyRequestForm(target));
 }

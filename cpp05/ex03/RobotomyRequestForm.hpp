@@ -18,6 +18,8 @@ public:
     ~RobotomyRequestForm();
 
     void execute(Bureaucrat const &executor) const;
+    AForm* clone(std::string target);
+
 };
 
 #endif

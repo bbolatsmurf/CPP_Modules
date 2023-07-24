@@ -28,12 +28,12 @@ public:
     class GradeTooHighException : public std::exception
     {
     public:
-        GradeTooHighException();
+        const char * what() const throw();
     };
     class GradeTooLowException : public std::exception
     {
     public:
-        GradeTooLowException();
+        const char * what() const throw();
     };
 };
 std::ostream &operator<<(std::ostream &o, const Form &obj);
